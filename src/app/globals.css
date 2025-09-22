@@ -1,26 +1,193 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Updated color scheme to match maritime branding with deep navy and sandstone beige */
+  --background: #060945;
+  /* Deep nautical navy background */
+  --foreground: #e4ceb3;
+  /* Sandstone beige text */
+  --card: #1a1f5f;
+  /* Slightly lighter navy for cards */
+  --card-foreground: #e4ceb3;
+  /* Sandstone beige text on cards */
+  --popover: #1a1f5f;
+  /* Card color for popovers */
+  --popover-foreground: #e4ceb3;
+  /* Sandstone beige text for popovers */
+  --primary: #e4ceb3;
+  /* Sandstone beige for primary actions */
+  --primary-foreground: #060945;
+  /* Navy text on primary buttons */
+  --secondary: #017a88;
+  /* Ocean teal for secondary actions */
+  --secondary-foreground: #f9fafb;
+  /* Light text on secondary buttons */
+  --muted: #2a2f6f;
+  /* Muted navy for subtle elements */
+  --muted-foreground: #b8a898;
+  /* Muted beige text */
+  --accent: #ff6457;
+  /* Signal coral for accents */
+  --accent-foreground: #f9fafb;
+  /* Light text on accent elements */
+  --destructive: #dc2626;
+  /* Red for errors */
+  --destructive-foreground: #ffffff;
+  /* White text for destructive actions */
+  --border: #3a3f7f;
+  /* Lighter navy for borders */
+  --input: #2a2f6f;
+  /* Muted navy for input backgrounds */
+  --ring: rgba(228, 206, 179, 0.3);
+  /* Beige ring for focus states */
+  --chart-1: #e4ceb3;
+  /* Sandstone beige for charts */
+  --chart-2: #017a88;
+  /* Ocean teal for charts */
+  --chart-3: #ff6457;
+  /* Signal coral for charts */
+  --chart-4: #f9fafb;
+  /* Cloud white for charts */
+  --chart-5: #060945;
+  /* Deep navy for charts */
+  --radius: 0.5rem;
+  /* Rounded corners */
+  --sidebar: #1a1f5f;
+  /* Card color for sidebar */
+  --sidebar-foreground: #e4ceb3;
+  /* Beige text in sidebar */
+  --sidebar-primary: #e4ceb3;
+  /* Beige primary in sidebar */
+  --sidebar-primary-foreground: #060945;
+  /* Navy text on sidebar primary */
+  --sidebar-accent: #017a88;
+  /* Teal accent in sidebar */
+  --sidebar-accent-foreground: #f9fafb;
+  /* Light text on sidebar accents */
+  --sidebar-border: #3a3f7f;
+  /* Border color for sidebar */
+  --sidebar-ring: rgba(228, 206, 179, 0.3);
+  /* Focus ring for sidebar */
+}
+
+.dark {
+  --background: #060945;
+  --foreground: #e4ceb3;
+  --card: #1a1f5f;
+  --card-foreground: #e4ceb3;
+  --popover: #1a1f5f;
+  --popover-foreground: #e4ceb3;
+  --primary: #e4ceb3;
+  --primary-foreground: #060945;
+  --secondary: #017a88;
+  --secondary-foreground: #f9fafb;
+  --muted: #2a2f6f;
+  --muted-foreground: #b8a898;
+  --accent: #ff6457;
+  --accent-foreground: #f9fafb;
+  --destructive: #dc2626;
+  --destructive-foreground: #ffffff;
+  --border: #3a3f7f;
+  --input: #2a2f6f;
+  --ring: rgba(228, 206, 179, 0.3);
+  --chart-1: #e4ceb3;
+  --chart-2: #017a88;
+  --chart-3: #ff6457;
+  --chart-4: #f9fafb;
+  --chart-5: #0a0f3f;
+  --sidebar: #1a1f5f;
+  --sidebar-foreground: #e4ceb3;
+  --sidebar-primary: #e4ceb3;
+  --sidebar-primary-foreground: #0a0f3f;
+  --sidebar-accent: #017a88;
+  --sidebar-accent-foreground: #f9fafb;
+  --sidebar-border: #3a3f7f;
+  --sidebar-ring: rgba(228, 206, 179, 0.3);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Added custom animations for maritime theme */
+@keyframes wave {
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-wave {
+  animation: wave 3s ease-in-out infinite;
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease-out forwards;
 }
