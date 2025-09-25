@@ -1,7 +1,8 @@
-"use client"
+"use client";
 
-import { useEffect, useState } from "react"
-import { Card, CardContent } from "@/components/ui/card"
+import { useEffect, useState } from "react";
+import { Card, CardContent } from "@/components/ui/card";
+import Image from "next/image";
 
 const partners = [
   { name: "Maersk", logo: "/maersk-shipping-logo.jpg" },
@@ -11,45 +12,44 @@ const partners = [
   { name: "Hapag-Lloyd", logo: "/hapag-lloyd-shipping-logo.jpg" },
   { name: "ONE", logo: "/ocean-network-express-logo.jpg" },
   { name: "Evergreen", logo: "/evergreen-shipping-logo.jpg" },
-  { name: "Yang Ming", logo: "/yang-ming-shipping-logo.png" },
-]
+];
 
 const kpis = [
   { value: 4700, label: "Vessels Served", suffix: "" },
   { value: 98, label: "Client Satisfaction", suffix: "%" },
   { value: 30, label: "Years Experience", suffix: "+" },
   { value: 24, label: "Hour Support", suffix: "/7" },
-]
+];
 
 function AnimatedCounter({ value, suffix }: { value: number; suffix: string }) {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
 
   useEffect(() => {
-    const duration = 2000
-    const steps = 60
-    const increment = value / steps
-    const stepDuration = duration / steps
+    const duration = 2000;
+    const steps = 60;
+    const increment = value / steps;
+    const stepDuration = duration / steps;
 
-    let current = 0
+    let current = 0;
     const timer = setInterval(() => {
-      current += increment
+      current += increment;
       if (current >= value) {
-        setCount(value)
-        clearInterval(timer)
+        setCount(value);
+        clearInterval(timer);
       } else {
-        setCount(Math.floor(current))
+        setCount(Math.floor(current));
       }
-    }, stepDuration)
+    }, stepDuration);
 
-    return () => clearInterval(timer)
-  }, [value])
+    return () => clearInterval(timer);
+  }, [value]);
 
   return (
     <span className="text-4xl font-bold text-primary">
       {count.toLocaleString()}
       {suffix}
     </span>
-  )
+  );
 }
 
 export function SocialProof() {
@@ -72,10 +72,12 @@ export function SocialProof() {
                 className="opacity-60 hover:opacity-100 transition-opacity duration-300 grayscale hover:grayscale-0"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <img
+                <Image
                   src={partner.logo || "/placeholder.svg"}
+                  width={100}
+                  height={100}
                   alt={`${partner.name} logo`}
-                  className="h-12 w-auto object-contain filter brightness-0 invert opacity-70"
+                  className=" w-auto object-contain filter  opacity-70 rounded-full"
                 />
               </div>
             ))}
@@ -90,12 +92,14 @@ export function SocialProof() {
                 <div className="mb-2">
                   <AnimatedCounter value={kpi.value} suffix={kpi.suffix} />
                 </div>
-                <div className="text-sm text-card-foreground/70 font-[family-name:var(--font-inter)]">{kpi.label}</div>
+                <div className="text-sm text-card-foreground/70 font-[family-name:var(--font-inter)]">
+                  {kpi.label}
+                </div>
               </CardContent>
             </Card>
           ))}
         </div>
       </div>
     </section>
-  )
+  );
 }

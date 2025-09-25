@@ -6,10 +6,13 @@ import Image from "next/image";
 
 export function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [showNavigation, setShowNavigation] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      const scrollY = window.scrollY;
+      setIsScrolled(scrollY > 50);
+      setShowNavigation(scrollY > 120);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -27,23 +30,27 @@ export function Navigation() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? "bg-background/95 backdrop-blur-sm border-b border-border"
-          : "bg-transparent"
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        showNavigation
+          ? `translate-y-0 opacity-100 ${
+              isScrolled
+                ? "bg-background/95 backdrop-blur-sm border-b border-border"
+                : "bg-transparent"
+            }`
+          : "-translate-y-full opacity-0"
       }`}
     >
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-1">
+          <div className="flex items-center space-x-2">
             <Image
               src="/logo.png"
               alt="Rizos & Partners Logo"
-              width={90}
-              height={90}
+              width={80}
+              height={80}
               className="rounded-full"
             />
-            <span className="text-l font-bold text-primary font-[family-name:var(--font-poppins)]">
+            <span className="text-xl font-bold text-primary font-[family-name:var(--font-poppins)]">
               Rizos & Partners
             </span>
           </div>

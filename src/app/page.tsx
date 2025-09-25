@@ -4,9 +4,9 @@ import { ValuePillars } from "@/components/value-pillars";
 import { ServicesSlider } from "@/components/services-slider";
 import { WorldMap } from "@/components/world-map";
 import { SocialProof } from "@/components/social-proof";
-import { InsightsSection } from "@/components/insights-section";
 import { ContactSection } from "@/components/contact-section";
 import { Footer } from "@/components/footer";
+import { BackToTop } from "@/components/back-to-top";
 
 export default function HomePage() {
   return (
@@ -30,6 +30,7 @@ export default function HomePage() {
         <ContactSection />
       </section>
       <Footer />
+      <BackToTop />
     </main>
   );
 }

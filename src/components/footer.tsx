@@ -44,47 +44,7 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Quick Links */}
-          <div>
-            <h3 className="text-lg font-semibold text-foreground mb-4 font-[family-name:var(--font-poppins)]">
-              Quick Links
-            </h3>
-            <ul className="space-y-3">
-              <li>
-                <a
-                  href="#about"
-                  className="text-foreground/70 hover:text-primary transition-colors"
-                >
-                  About Us
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#services"
-                  className="text-foreground/70 hover:text-primary transition-colors"
-                >
-                  Services
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#network"
-                  className="text-foreground/70 hover:text-primary transition-colors"
-                >
-                  Global Network
-                </a>
-              </li>
-
-              <li>
-                <a
-                  href="#contact"
-                  className="text-foreground/70 hover:text-primary transition-colors"
-                >
-                  Contact
-                </a>
-              </li>
-            </ul>
-          </div>
+          <div />
 
           {/* Contact Info */}
           <div>
@@ -95,9 +55,8 @@ export function Footer() {
               <li className="flex items-start gap-3">
                 <MapPin className="h-4 w-4 text-primary mt-1 flex-shrink-0" />
                 <span className="text-foreground/70 text-sm">
-                  123 Akti Miaouli Street
-                  <br />
-                  Piraeus 18538, Greece
+                  Christou Lada 2 <br />
+                  Syntagma, Athens, Greece 10561
                 </span>
               </li>
               <li className="flex items-center gap-3">
@@ -142,16 +101,6 @@ export function Footer() {
                 </a>
               </div>
             </div>
-
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={scrollToTop}
-              className="border-primary text-primary hover:bg-primary hover:text-primary-foreground bg-transparent"
-            >
-              <ArrowUp className="h-4 w-4 mr-2" />
-              Back to Top
-            </Button>
           </div>
         </div>
       </div>
