@@ -18,10 +18,62 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Rizos & Partners - Global Maritime Gateway",
+  title: {
+    default:
+      "Rizos & Partners | Global Maritime Gateway to the Greek Shipping Market",
+    template: "%s | Rizos & Partners",
+  },
   description:
-    "Your Bridge to the Greek Shipping Market. Connecting Global Maritime Service Providers with Greece’s Leading Shipowners, Ship Managers & Charterers.",
-  generator: "v0.app",
+    "Rizos & Partners connects global maritime service providers with Greece’s leading shipowners, ship managers, and charterers. Access the Greek shipping market: compliance, technical, commercial and strategic maritime solutions.",
+  keywords: [
+    "Rizos & Partners",
+    "Greek shipping market",
+    "shipowners",
+    "ship managers",
+    "charterers",
+    "maritime services",
+    "shipping consulting",
+    "marine brokerage",
+    "vessel management",
+    "maritime compliance",
+  ],
+  authors: [{ name: "Rizos & Partners" }],
+  creator: "Rizos & Partners",
+  publisher: "Rizos & Partners",
+  metadataBase: new URL("https://www.rizosandpartners.com"),
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title: "Rizos & Partners | Global Maritime Gateway",
+    description:
+      "Bridge to the Greek shipping market: connect with top shipowners, managers & charterers. Strategic maritime advisory and services.",
+    url: "https://www.rizosandpartners.com/",
+    siteName: "Rizos & Partners",
+    type: "website",
+    locale: "en_US",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Rizos & Partners - Global Maritime Gateway",
+      },
+    ],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    nocache: false,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
+  category: "Maritime Shipping",
 };
 
 export default function RootLayout({
