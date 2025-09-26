@@ -13,15 +13,15 @@ export default function HomePage() {
     <main className="min-h-screen">
       <Navigation />
       <HeroSection />
-      <section id="about">
+      {/* <section id="about">
         <ValuePillars />
-      </section>
-      <section id="services">
+      </section> */}
+      {/* <section id="services">
         <ServicesSlider />
-      </section>
+      </section> */}
       <section id="network">
         <WorldMap />
-        <SocialProof />
+        {/* <SocialProof /> */}
       </section>
       {/* <section id="insights">
         <InsightsSection />

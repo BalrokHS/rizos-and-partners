@@ -62,24 +62,24 @@ export function Navigation() {
             >
               About
             </button>
-            <button
+            {/* <button
               onClick={() => scrollToSection("services")}
               className="text-foreground hover:text-primary transition-colors cursor-pointer"
             >
               Services
-            </button>
+            </button> */}
             <button
               onClick={() => scrollToSection("network")}
               className="text-foreground hover:text-primary transition-colors cursor-pointer"
             >
-              Network Map
+              Network
             </button>
-            <button
+            {/* <button
               onClick={() => scrollToSection("insights")}
               className="text-foreground hover:text-primary transition-colors cursor-pointer"
             >
               Insights
-            </button>
+            </button> */}
             <button
               onClick={() => scrollToSection("contact")}
               className="text-foreground hover:text-primary transition-colors cursor-pointer"

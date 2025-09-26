@@ -9,11 +9,11 @@
   /* Deep nautical navy background */
   --foreground: #e4ceb3;
   /* Sandstone beige text */
-  --card: #1a1f5f;
+  --card: #080A42;
   /* Slightly lighter navy for cards */
   --card-foreground: #e4ceb3;
   /* Sandstone beige text on cards */
-  --popover: #1a1f5f;
+  --popover: #080A42;
   /* Card color for popovers */
   --popover-foreground: #e4ceb3;
   /* Sandstone beige text for popovers */
@@ -55,7 +55,7 @@
   /* Deep navy for charts */
   --radius: 0.5rem;
   /* Rounded corners */
-  --sidebar: #1a1f5f;
+  --sidebar: #080A42;
   /* Card color for sidebar */
   --sidebar-foreground: #e4ceb3;
   /* Beige text in sidebar */
@@ -76,9 +76,9 @@
 .dark {
   --background: #060945;
   --foreground: #e4ceb3;
-  --card: #1a1f5f;
+  --card: #080A42;
   --card-foreground: #e4ceb3;
-  --popover: #1a1f5f;
+  --popover: #080A42;
   --popover-foreground: #e4ceb3;
   --primary: #e4ceb3;
   --primary-foreground: #060945;
@@ -98,7 +98,7 @@
   --chart-3: #ff6457;
   --chart-4: #f9fafb;
   --chart-5: #0a0f3f;
-  --sidebar: #1a1f5f;
+  --sidebar: #080A42;
   --sidebar-foreground: #e4ceb3;
   --sidebar-primary: #e4ceb3;
   --sidebar-primary-foreground: #0a0f3f;
