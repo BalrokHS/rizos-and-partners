@@ -50,7 +50,7 @@ export function HeroSection() {
             Rizos & Partners
           </h1>
           <p className="text-lg md:text-xl pt-5 text-foreground/80 font-[family-name:var(--font-inter)] italic">
-            The Future is Here
+            Connecting the Dots in an Ever-Changing World
           </p>
         </div>
       </div>

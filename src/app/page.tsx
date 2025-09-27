@@ -1,10 +1,6 @@
 import { Navigation } from "@/components/navigation";
 import { HeroSection } from "@/components/hero-section";
-import { ValuePillars } from "@/components/value-pillars";
-import { ServicesSlider } from "@/components/services-slider";
 import { WorldMap } from "@/components/world-map";
-import { SocialProof } from "@/components/social-proof";
-import { ContactSection } from "@/components/contact-section";
 import { Footer } from "@/components/footer";
 import { BackToTop } from "@/components/back-to-top";
 

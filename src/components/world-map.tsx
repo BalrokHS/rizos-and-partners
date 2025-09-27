@@ -1,25 +1,17 @@
-/* ---------------------------------------------------------------------------
-   components/WorldMap.tsx   –  dotted-globe version with subtle extras
-   --------------------------------------------------------------------------- */
-
 "use client";
 
 import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { MapPin, Anchor, Users, Truck } from "lucide-react";
 import Image from "next/image";
 
-/* ---------------------------------------------------------------------------
-   DATA
-   --------------------------------------------------------------------------- */
 const ports = [
   {
     id: 1,
     name: "Piraeus",
     country: "Greece",
-    x: 52,
-    y: 45,
+    x: 52.3,
+    y: 38.5,
     type: "headquarters",
     services: ["Agency", "Chandlers", "Repairs"],
   },
@@ -27,17 +19,17 @@ const ports = [
     id: 2,
     name: "Singapore",
     country: "Singapore",
-    x: 78,
-    y: 65,
+    x: 78.5,
+    y: 63.8,
     type: "chandlers",
-    services: ["Chandlers", "Repairs"],
+    services: ["Chandlers", "Agencies"],
   },
   {
     id: 3,
     name: "Rotterdam",
     country: "Netherlands",
-    x: 48,
-    y: 35,
+    x: 48.2,
+    y: 31.8,
     type: "chandlers",
     services: ["Chandlers"],
   },
@@ -45,81 +37,201 @@ const ports = [
     id: 4,
     name: "Hamburg",
     country: "Germany",
-    x: 50,
-    y: 33,
+    x: 49.2,
+    y: 30.5,
     type: "repairs",
     services: ["Repairs"],
-  },
-  {
-    id: 5,
-    name: "Antwerp",
-    country: "Belgium",
-    x: 47,
-    y: 36,
-    type: "chandlers",
-    services: ["Chandlers"],
   },
   {
     id: 6,
     name: "Dubai",
     country: "UAE",
-    x: 62,
-    y: 52,
+    x: 61.8,
+    y: 47.2,
     type: "agency",
-    services: ["Agency", "Chandlers"],
+    services: ["Agencies", "Chandlers"],
   },
   {
     id: 7,
     name: "Hong Kong",
     country: "China",
-    x: 82,
-    y: 55,
+    x: 80.2,
+    y: 48.5,
     type: "chandlers",
-    services: ["Chandlers", "Repairs"],
-  },
-  {
-    id: 8,
-    name: "New York",
-    country: "USA",
-    x: 25,
-    y: 42,
-    type: "agency",
-    services: ["Agency"],
+    services: ["Agencies"],
   },
   {
     id: 9,
     name: "Los Angeles",
     country: "USA",
-    x: 15,
-    y: 48,
-    type: "chandlers",
-    services: ["Chandlers"],
+    x: 14.5,
+    y: 42.8,
+    type: "towage",
+    services: ["Towage"],
   },
   {
     id: 10,
     name: "Panama",
     country: "Panama",
-    x: 22,
-    y: 58,
+    x: 22.8,
+    y: 56.2,
     type: "agency",
-    services: ["Agency", "Repairs"],
+    services: ["Agencies", "Chandlers"],
+  },
+  {
+    id: 11,
+    name: "Shanghai",
+    country: "China",
+    x: 82.5,
+    y: 44.2,
+    type: "agency",
+    services: ["Agencies", "Chandlers"],
+  },
+  {
+    id: 12,
+    name: "Busan", // Fixed spelling from "Bushan"
+    country: "South Korea",
+    x: 84.2,
+    y: 41.5,
+    type: "chandlers",
+    services: ["Chandlers", "Agencies"],
+  },
+  {
+    id: 13,
+    name: "Dakar",
+    country: "Senegal",
+    x: 42.8,
+    y: 52.8,
+    type: "agency",
+    services: ["Agencies", "Chandlers"],
+  },
+  {
+    id: 14,
+    name: "Lagos",
+    country: "Nigeria",
+    x: 47.8,
+    y: 58.5,
+    type: "agency",
+    services: ["Agencies"],
+  },
+  {
+    id: 15,
+    name: "Mombasa",
+    country: "Kenya",
+    x: 58.5,
+    y: 65.8,
+    type: "agency",
+    services: ["Agencies", "Chandlers"],
+  },
+  {
+    id: 16,
+    name: "Port Louis",
+    country: "Mauritius",
+    x: 62.5,
+    y: 75.2,
+    type: "agency",
+    services: ["Agencies"],
+  },
+  {
+    id: 17,
+    name: "Cape Town",
+    country: "South Africa",
+    x: 51.2,
+    y: 82.5,
+    type: "chandlers",
+    services: ["Chandlers"],
+  },
+  {
+    id: 18,
+    name: "Santiago",
+    country: "Chile",
+    x: 26.2,
+    y: 82.8,
+    type: "towage",
+    services: ["Towage"],
+  },
+  {
+    id: 19,
+    name: "Buenos Aires",
+    country: "Argentina",
+    x: 30.8,
+    y: 83.5,
+    type: "towage",
+    services: ["Towage"],
+  },
+  {
+    id: 20,
+    name: "Lima",
+    country: "Peru",
+    x: 23.2,
+    y: 68.5,
+    type: "towage",
+    services: ["Towage"],
+  },
+  {
+    id: 21,
+    name: "Guayaquil",
+    country: "Ecuador",
+    x: 22.5,
+    y: 64.2,
+    type: "towage",
+    services: ["Towage"],
+  },
+  {
+    id: 22,
+    name: "Panama City",
+    country: "Panama",
+    x: 22.8,
+    y: 56.2,
+    type: "towage",
+    services: ["Towage", "Chandlers"],
+  },
+  {
+    id: 23,
+    name: "Dos Bocas",
+    country: "Mexico",
+    x: 19.5,
+    y: 50.2,
+    type: "towage",
+    services: ["Towage"],
+  },
+  {
+    id: 24,
+    name: "Houston",
+    country: "USA",
+    x: 18.8,
+    y: 45.2,
+    type: "chandlers",
+    services: ["Chandlers", "Agencies"],
+  },
+  {
+    id: 25,
+    name: "Algeciras",
+    country: "Spain",
+    x: 46.5,
+    y: 40.2,
+    type: "agency",
+    services: ["Agencies", "Chandlers"],
+  },
+  {
+    id: 26,
+    name: "Jakarta",
+    country: "Indonesia",
+    x: 79.2,
+    y: 66.8,
+    type: "agencies",
+    services: ["Agencies"],
   },
 ] as const;
 
 const filterTypes = [
   { id: "all", label: "All Partners", icon: MapPin },
-  { id: "agency", label: "Agency", icon: Users },
+  { id: "agencies", label: "Agencies", icon: Users },
   { id: "chandlers", label: "Chandlers", icon: Truck },
-  { id: "repairs", label: "Towage", icon: Anchor },
+  { id: "towage", label: "Towage", icon: Anchor },
 ];
 
-/* ---------------------------------------------------------------------------
-   COMPONENT
-   --------------------------------------------------------------------------- */
 export function WorldMap() {
-  const [selectedPort, setSelectedPort] = useState<
-    (typeof ports)[number] | null
-  >(null);
   const [activeFilter, setActiveFilter] = useState("all");
 
   const filteredPorts = ports.filter(
@@ -135,9 +247,9 @@ export function WorldMap() {
         return "bg-accent";
       case "chandlers":
         return "bg-primary";
-      case "repairs":
+      case "towage":
         return "bg-secondary";
-      case "agency":
+      case "agencies":
         return "bg-chart-2";
       default:
         return "bg-primary";
@@ -149,7 +261,7 @@ export function WorldMap() {
       <div className="container mx-auto max-w-7xl">
         {/* Heading  -------------------------------------------------------- */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-primary mb-6 font-[var(--font-poppins)] text-balance">
+          <h2 className="text-4xl md:text-5xl font-bold text-primary mb-6  text-balance">
             Global Network
           </h2>
           <p className="text-xl text-foreground/80 max-w-3xl mx-auto leading-relaxed font-[var(--font-inter)]">
@@ -178,41 +290,43 @@ export function WorldMap() {
 
         {/* Card with dotted-globe background ------------------------------ */}
         <div className="relative">
-          <Card className="bg-card border-border overflow-hidden">
+          <Card className="bg-card border-border border-2 shadow-2xl overflow-hidden">
             <CardContent className="p-0">
               <div className="relative w-full h-96 md:h-[500px]">
+                {/* ──────────────────────────────
+               OPTION 1 — one-colour tint
+               just CSS, keep using next/image
+            ────────────────────────────── */}
+                <div className="absolute inset-0  mix-blend-multiply pointer-events-none" />
                 <Image
-                  src="/world-dots.svg"
-                  alt=""
-                  fill /* makes it cover the parent */
-                  className="object-cover opacity-40 "
+                  src="/vecteezy_vector-map-of-the-world-with-square-dots_4997094.svg"
+                  alt="world map"
+                  fill
+                  className="object-cover opacity-70"
                   priority
                 />
 
-                {/* Port markers  ---------------------------------------- */}
                 {filteredPorts.map((port) => (
                   <div
                     key={port.id}
-                    className="absolute transform -translate-x-1/2 -translate-y-1/2 cursor-pointer group"
                     style={{ left: `${port.x}%`, top: `${port.y}%` }}
-                    onClick={() => setSelectedPort(port)}
+                    className="absolute -translate-x-1/2 -translate-y-1/2 cursor-pointer group"
                   >
-                    {/* beige spotlight behind active port */}
-                    {selectedPort?.id === port.id && (
-                      <span className="absolute inset-0 rounded-full bg-accent/30 blur-sm" />
-                    )}
-
                     <div
                       className={`w-4 h-4 rounded-full ${getPortColor(
                         port.type
-                      )} border-2 border-background shadow-lg
-                                 group-hover:scale-125 transition-transform`}
+                      )}
+                              border-2 border-background shadow-lg
+                              group-hover:scale-125 transition-transform`}
                     >
                       <div className="absolute inset-0 rounded-full animate-ping bg-current opacity-20" />
                     </div>
 
                     {/* label on hover */}
-                    <div className="absolute top-6 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity">
+                    <div
+                      className="absolute top-6 left-1/2 -translate-x-1/2 opacity-0
+                                group-hover:opacity-100 transition-opacity"
+                    >
                       <div className="bg-background border border-border rounded-lg px-3 py-2 shadow-lg whitespace-nowrap">
                         <div className="text-sm font-semibold text-foreground">
                           {port.name}
@@ -228,49 +342,6 @@ export function WorldMap() {
             </CardContent>
           </Card>
         </div>
-
-        {/* Details panel  -------------------------------------------------- */}
-        {selectedPort && (
-          <div className="mt-8">
-            <Card className="border-primary bg-card">
-              <CardContent className="p-6">
-                <div className="flex items-start justify-between mb-4">
-                  <div>
-                    <h3 className="text-2xl font-bold text-card-foreground font-[var(--font-poppins)]">
-                      {selectedPort.name}, {selectedPort.country}
-                    </h3>
-                    <p className="text-card-foreground/70 capitalize">
-                      {selectedPort.type === "headquarters"
-                        ? "Headquarters"
-                        : `${selectedPort.type} Partner`}
-                    </p>
-                  </div>
-                  <button
-                    onClick={() => setSelectedPort(null)}
-                    className="text-muted-foreground hover:text-foreground"
-                  >
-                    ✕
-                  </button>
-                </div>
-
-                <div className="flex flex-wrap gap-2">
-                  {selectedPort.services.map((service) => (
-                    <Badge key={service} variant="secondary">
-                      {service}
-                    </Badge>
-                  ))}
-                </div>
-
-                <div className="mt-4 pt-4 border-t border-border">
-                  <p className="text-sm text-card-foreground/70">
-                    Contact our local representative for detailed service
-                    information and pricing.
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        )}
 
         {/* Stats  ---------------------------------------------------------- */}
         <div className="grid grid-cols-2 md:grid-cols-3 gap-6 mt-16">
