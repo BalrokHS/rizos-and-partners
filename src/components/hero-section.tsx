@@ -29,20 +29,6 @@ export function HeroSection() {
       ref={heroRef}
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
     >
-      {/* Video Background */}
-      <div className="absolute inset-0 z-0">
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="w-full h-full object-cover opacity-30"
-        >
-          <source src="/placeholder.mp4" type="video/mp4" />
-        </video>
-        <div className="absolute inset-0 bg-gradient-to-b from-background/20 via-background/40 to-background/60" />
-      </div>
-
       <div
         className={`absolute inset-0 z-30 flex flex-col items-center justify-center transition-all duration-700 ${
           showLanding
@@ -55,8 +41,8 @@ export function HeroSection() {
             <Image
               src="/logo.png"
               alt="Rizos & Partners Logo"
-              width={800}
-              height={800}
+              width={1200}
+              height={1200}
               className="mx-auto rounded-full"
             />
           </div>
@@ -64,7 +50,7 @@ export function HeroSection() {
             Rizos & Partners
           </h1>
           <p className="text-lg md:text-xl text-foreground/80 font-[family-name:var(--font-inter)]">
-            Your Bridge to the Greek Shipping Market
+            The Future is Here
           </p>
         </div>
       </div>

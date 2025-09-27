@@ -26,9 +26,9 @@ export default function HomePage() {
       {/* <section id="insights">
         <InsightsSection />
       </section> */}
-      <section id="contact">
+      {/* <section id="contact">
         <ContactSection />
-      </section>
+      </section> */}
       <Footer />
       <BackToTop />
     </main>

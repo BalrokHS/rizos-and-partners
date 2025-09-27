@@ -7,7 +7,7 @@
 import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { MapPin, Anchor, Wrench, Users } from "lucide-react";
+import { MapPin, Anchor, Users, Truck } from "lucide-react";
 import Image from "next/image";
 
 /* ---------------------------------------------------------------------------
@@ -108,9 +108,9 @@ const ports = [
 
 const filterTypes = [
   { id: "all", label: "All Partners", icon: MapPin },
-  { id: "chandlers", label: "Chandlers", icon: Anchor },
-  { id: "repairs", label: "Repairs", icon: Wrench },
   { id: "agency", label: "Agency", icon: Users },
+  { id: "chandlers", label: "Chandlers", icon: Truck },
+  { id: "repairs", label: "Towage", icon: Anchor },
 ];
 
 /* ---------------------------------------------------------------------------
@@ -153,8 +153,7 @@ export function WorldMap() {
             Global Network
           </h2>
           <p className="text-xl text-foreground/80 max-w-3xl mx-auto leading-relaxed font-[var(--font-inter)]">
-            Our extensive partner network spans major shipping hubs worldwide,
-            ensuring comprehensive coverage for your maritime needs
+            Our extensive partner network spans major shipping hubs worldwide.
           </p>
         </div>
 
