@@ -27,10 +27,10 @@ export function HeroSection() {
   return (
     <section
       ref={heroRef}
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      className="relative min-h-screen flex items-center justify-start overflow-hidden"
     >
       <div
-        className={`absolute inset-0 z-30 flex flex-col items-center justify-center transition-all duration-700 ${
+        className={`absolute inset-0 z-30 flex flex-col items-center justify-start transition-all duration-700 ${
           showLanding
             ? "opacity-100 translate-y-0"
             : "opacity-0 -translate-y-20 pointer-events-none"
@@ -41,12 +41,12 @@ export function HeroSection() {
             <Image
               src="/logo.png"
               alt="Rizos & Partners Logo"
-              width={1200}
-              height={1200}
+              width={900}
+              height={900}
               className="mx-auto rounded-full"
             />
           </div>
-          <h1 className="text-4xl md:text-6xl font-bold text-primary mb-4 font-[family-name:var(--font-poppins)]">
+          <h1 className="text-4xl md:text-6xl font-bold text-primary  font-[family-name:var(--font-poppins)]">
             Rizos & Partners
           </h1>
           <p className="text-lg md:text-xl text-foreground/80 font-[family-name:var(--font-inter)]">
