@@ -49,7 +49,7 @@ export function HeroSection() {
           <h1 className="text-4xl md:text-6xl font-bold text-primary  font-[family-name:var(--font-poppins)]">
             Rizos & Partners
           </h1>
-          <p className="text-lg md:text-xl text-foreground/80 font-[family-name:var(--font-inter)]">
+          <p className="text-lg md:text-xl pt-4 text-foreground/80 font-[family-name:var(--font-inter)]">
             The Future is Here
           </p>
         </div>
