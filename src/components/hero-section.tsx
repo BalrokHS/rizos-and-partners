@@ -36,20 +36,20 @@ export function HeroSection() {
             : "opacity-0 -translate-y-20 pointer-events-none"
         }`}
       >
-        <div className="text-center animate-fade-in-up">
+        <div className="text-center animate-fade-in-up mt-20">
           <div className="">
             <Image
               src="/logo.png"
               alt="Rizos & Partners Logo"
-              width={900}
-              height={900}
+              width={500}
+              height={500}
               className="mx-auto rounded-full"
             />
           </div>
-          <h1 className="text-4xl md:text-6xl font-bold text-primary  font-[family-name:var(--font-poppins)]">
+          <h1 className="text-4xl md:text-6xl font-bold text-primary  font-[family-name:var(--font-poppins)] pt-20">
             Rizos & Partners
           </h1>
-          <p className="text-lg md:text-xl pt-4 text-foreground/80 font-[family-name:var(--font-inter)]">
+          <p className="text-lg md:text-xl pt- text-foreground/80 font-[family-name:var(--font-inter)]">
             The Future is Here
           </p>
         </div>
