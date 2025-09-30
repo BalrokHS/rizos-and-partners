@@ -69,12 +69,6 @@ export function Navigation() {
             >
               Network
             </button>
-            <button
-              onClick={() => scrollToSection("contact")}
-              className="text-foreground hover:text-primary transition-colors cursor-pointer"
-            >
-              Contact
-            </button>
           </div>
         </div>
       </div>

@@ -27,16 +27,16 @@ export function HeroSection() {
   return (
     <section
       ref={heroRef}
-      className="relative min-h-screen flex items-center justify-start overflow-hidden"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden"
     >
       <div
-        className={`absolute inset-0 z-30 flex flex-col items-center justify-start transition-all duration-700 ${
+        className={`absolute inset-0 z-30 flex flex-col items-center justify-center transition-all duration-700 ${
           showLanding
             ? "opacity-100 translate-y-0"
             : "opacity-0 -translate-y-20 pointer-events-none"
         }`}
       >
-        <div className="text-center animate-fade-in-up mt-20">
+        <div className="text-center animate-fade-in-up mt-10">
           <div className="">
             <Image
               src="/logo.png"
@@ -50,7 +50,7 @@ export function HeroSection() {
             Rizos & Partners
           </h1>
           <p className="text-lg md:text-xl pt-5 text-foreground/80 font-[family-name:var(--font-inter)] italic">
-            Connecting the Dots in an Ever-Changing World
+            The Future is Here
           </p>
         </div>
       </div>
