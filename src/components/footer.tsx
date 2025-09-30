@@ -11,7 +11,7 @@ export function Footer() {
   };
 
   return (
-    <footer className="bg-background border-t border-border">
+    <footer className="bg-background border-t border-border" id="contact">
       <div className="container mx-auto max-w-screen px-16 py-16">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           {/* Company Info */}

@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Button } from "@/components/ui/button";
 import Image from "next/image";
 
 export function Navigation() {
@@ -57,10 +56,10 @@ export function Navigation() {
 
           <div className="hidden md:flex items-center space-x-8">
             <button
-              onClick={() => scrollToSection("about")}
+              onClick={() => scrollToSection("home")}
               className="text-foreground hover:text-primary transition-colors cursor-pointer"
             >
-              About
+              Home
             </button>
 
             <button
@@ -68,6 +67,12 @@ export function Navigation() {
               className="text-foreground hover:text-primary transition-colors cursor-pointer"
             >
               Network
+            </button>
+            <button
+              onClick={() => scrollToSection("contact")}
+              className="text-foreground hover:text-primary transition-colors cursor-pointer"
+            >
+              Contact
             </button>
           </div>
         </div>
