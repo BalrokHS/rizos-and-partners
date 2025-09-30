@@ -1,359 +1,464 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { Card, CardContent } from "@/components/ui/card";
-import { MapPin, Anchor, Users, Truck } from "lucide-react";
-import Image from "next/image";
+import { MapPin, Anchor, Users, Truck, Loader2 } from "lucide-react";
+import {
+  ComposableMap,
+  Geographies,
+  Geography,
+  Marker,
+} from "react-simple-maps";
 
-const ports = [
+// Types
+type ServiceType = "Headquarters" | "Agencies" | "Chandlers" | "Towage";
+
+interface Port {
+  id: number;
+  name: string;
+  country: string;
+  coordinates: [number, number];
+  services: ServiceType[];
+}
+
+// Constants
+const GEO_URL =
+  "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json";
+
+const SERVICE_COLORS: Record<ServiceType, string> = {
+  Headquarters: "#ef4444",
+  Chandlers: "#3b82f6",
+  Towage: "#10b981",
+  Agencies: "#a855f7",
+};
+
+const FILTER_TYPES = [
+  { id: "all", label: "All Partners", icon: MapPin },
+  { id: "Agencies", label: "Agencies", icon: Users },
+  { id: "Chandlers", label: "Chandlers", icon: Truck },
+  { id: "Towage", label: "Towage", icon: Anchor },
+  // { id: "Headquarters", label: "Headquarters", icon: MapPin },
+];
+
+// Data
+const PORTS_DATA: Port[] = [
   {
     id: 1,
     name: "Piraeus",
     country: "Greece",
-    x: 52.3,
-    y: 38.5,
-    type: "headquarters",
-    services: ["Agency", "Chandlers", "Repairs"],
+    coordinates: [23.6469, 37.9415],
+    services: ["Headquarters", "Agencies", "Chandlers"],
   },
   {
     id: 2,
     name: "Singapore",
     country: "Singapore",
-    x: 78.5,
-    y: 63.8,
-    type: "chandlers",
+    coordinates: [103.8198, 1.3521],
     services: ["Chandlers", "Agencies"],
   },
   {
     id: 3,
     name: "Rotterdam",
     country: "Netherlands",
-    x: 48.2,
-    y: 31.8,
-    type: "chandlers",
+    coordinates: [4.4777, 51.9244],
     services: ["Chandlers"],
   },
   {
     id: 4,
     name: "Hamburg",
     country: "Germany",
-    x: 49.2,
-    y: 30.5,
-    type: "repairs",
-    services: ["Repairs"],
+    coordinates: [9.9937, 53.5511],
+    services: ["Chandlers"],
   },
   {
     id: 6,
     name: "Dubai",
     country: "UAE",
-    x: 61.8,
-    y: 47.2,
-    type: "agency",
+    coordinates: [55.2708, 25.2048],
     services: ["Agencies", "Chandlers"],
   },
   {
     id: 7,
     name: "Hong Kong",
     country: "China",
-    x: 80.2,
-    y: 48.5,
-    type: "chandlers",
-    services: ["Agencies"],
+    coordinates: [114.1694, 22.3193],
+    services: ["Agencies", "Chandlers"],
   },
   {
     id: 9,
     name: "Los Angeles",
     country: "USA",
-    x: 14.5,
-    y: 42.8,
-    type: "towage",
+    coordinates: [-118.2437, 34.0522],
     services: ["Towage"],
   },
   {
     id: 10,
     name: "Panama",
     country: "Panama",
-    x: 22.8,
-    y: 56.2,
-    type: "agency",
+    coordinates: [-79.5199, 8.9824],
     services: ["Agencies", "Chandlers"],
   },
   {
     id: 11,
     name: "Shanghai",
     country: "China",
-    x: 82.5,
-    y: 44.2,
-    type: "agency",
+    coordinates: [121.4737, 31.2304],
     services: ["Agencies", "Chandlers"],
   },
   {
     id: 12,
-    name: "Busan", // Fixed spelling from "Bushan"
+    name: "Busan",
     country: "South Korea",
-    x: 84.2,
-    y: 41.5,
-    type: "chandlers",
+    coordinates: [129.0756, 35.1796],
     services: ["Chandlers", "Agencies"],
   },
   {
     id: 13,
     name: "Dakar",
     country: "Senegal",
-    x: 42.8,
-    y: 52.8,
-    type: "agency",
+    coordinates: [-17.4467, 14.6928],
     services: ["Agencies", "Chandlers"],
   },
   {
     id: 14,
     name: "Lagos",
     country: "Nigeria",
-    x: 47.8,
-    y: 58.5,
-    type: "agency",
+    coordinates: [3.3792, 6.5244],
     services: ["Agencies"],
   },
   {
     id: 15,
     name: "Mombasa",
     country: "Kenya",
-    x: 58.5,
-    y: 65.8,
-    type: "agency",
+    coordinates: [39.6682, -4.0435],
     services: ["Agencies", "Chandlers"],
   },
   {
     id: 16,
     name: "Port Louis",
     country: "Mauritius",
-    x: 62.5,
-    y: 75.2,
-    type: "agency",
+    coordinates: [57.5012, -20.1609],
     services: ["Agencies"],
   },
   {
     id: 17,
     name: "Cape Town",
     country: "South Africa",
-    x: 51.2,
-    y: 82.5,
-    type: "chandlers",
+    coordinates: [18.4241, -33.9249],
     services: ["Chandlers"],
   },
   {
     id: 18,
     name: "Santiago",
     country: "Chile",
-    x: 26.2,
-    y: 82.8,
-    type: "towage",
+    coordinates: [-70.6693, -33.4489],
     services: ["Towage"],
   },
   {
     id: 19,
     name: "Buenos Aires",
     country: "Argentina",
-    x: 30.8,
-    y: 83.5,
-    type: "towage",
+    coordinates: [-58.3816, -34.6037],
     services: ["Towage"],
   },
   {
     id: 20,
     name: "Lima",
     country: "Peru",
-    x: 23.2,
-    y: 68.5,
-    type: "towage",
+    coordinates: [-77.0428, -12.0464],
     services: ["Towage"],
   },
   {
     id: 21,
     name: "Guayaquil",
     country: "Ecuador",
-    x: 22.5,
-    y: 64.2,
-    type: "towage",
+    coordinates: [-79.8862, -2.171],
     services: ["Towage"],
   },
   {
-    id: 22,
-    name: "Panama City",
-    country: "Panama",
-    x: 22.8,
-    y: 56.2,
-    type: "towage",
-    services: ["Towage", "Chandlers"],
-  },
-  {
     id: 23,
-    name: "Dos Bocas",
+    name: "Veracruz",
     country: "Mexico",
-    x: 19.5,
-    y: 50.2,
-    type: "towage",
+    coordinates: [-96.1342, 19.1738],
     services: ["Towage"],
   },
   {
     id: 24,
     name: "Houston",
     country: "USA",
-    x: 18.8,
-    y: 45.2,
-    type: "chandlers",
+    coordinates: [-95.3698, 29.7604],
     services: ["Chandlers", "Agencies"],
   },
   {
     id: 25,
     name: "Algeciras",
     country: "Spain",
-    x: 46.5,
-    y: 40.2,
-    type: "agency",
+    coordinates: [-5.454, 36.1408],
     services: ["Agencies", "Chandlers"],
   },
   {
     id: 26,
     name: "Jakarta",
     country: "Indonesia",
-    x: 79.2,
-    y: 66.8,
-    type: "agencies",
+    coordinates: [106.8456, -6.2088],
     services: ["Agencies"],
   },
-] as const;
-
-const filterTypes = [
-  { id: "all", label: "All Partners", icon: MapPin },
-  { id: "agencies", label: "Agencies", icon: Users },
-  { id: "chandlers", label: "Chandlers", icon: Truck },
-  { id: "towage", label: "Towage", icon: Anchor },
 ];
 
+// Sub-components
+const MapPatterns = () => (
+  <svg width="0" height="0" className="absolute">
+    <defs>
+      <pattern
+        id="dots"
+        x="0"
+        y="0"
+        width="8"
+        height="8"
+        patternUnits="userSpaceOnUse"
+      >
+        <circle cx="4" cy="4" r="2" fill="#9ca3af" />
+      </pattern>
+    </defs>
+  </svg>
+);
+
+const getPortColor = (services: ServiceType[]) => {
+  // Priority: Headquarters > Agencies > Chandlers > Towage
+  if (services.includes("Headquarters")) return SERVICE_COLORS.Headquarters;
+  if (services.includes("Agencies")) return SERVICE_COLORS.Agencies;
+  if (services.includes("Chandlers")) return SERVICE_COLORS.Chandlers;
+  if (services.includes("Towage")) return SERVICE_COLORS.Towage;
+  return SERVICE_COLORS.Agencies;
+};
+
+const FilterButton = ({
+  filter,
+  isActive,
+  onClick,
+}: {
+  filter: (typeof FILTER_TYPES)[0];
+  isActive: boolean;
+  onClick: () => void;
+}) => {
+  const Icon = filter.icon;
+  return (
+    <button
+      onClick={onClick}
+      className={`flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 sm:py-2 
+        text-sm sm:text-base rounded-full transition-all
+        ${
+          isActive
+            ? "bg-primary text-primary-foreground"
+            : "bg-muted text-muted-foreground hover:bg-primary/20"
+        }`}
+    >
+      <Icon className="h-3 w-3 sm:h-4 sm:w-4" />
+      <span>{filter.label}</span>
+    </button>
+  );
+};
+
+const Stats = ({
+  portsCount,
+  countriesCount,
+}: {
+  portsCount: number;
+  countriesCount: number;
+}) => (
+  <div className="grid grid-cols-2 gap-4 sm:gap-6 mt-12 sm:mt-16">
+    <div className="text-center">
+      <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-primary mb-1 sm:mb-2">
+        {portsCount}+
+      </div>
+      <div className="text-sm sm:text-base text-foreground/70">
+        Global Partners
+      </div>
+    </div>
+    <div className="text-center">
+      <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-primary mb-1 sm:mb-2">
+        {countriesCount}+
+      </div>
+      <div className="text-sm sm:text-base text-foreground/70">Countries</div>
+    </div>
+  </div>
+);
+
+const LoadingSpinner = () => (
+  <div className="absolute inset-0 flex items-center justify-center bg-background/80 backdrop-blur-sm z-10">
+    <div className="flex flex-col items-center gap-4">
+      <Loader2 className="h-12 w-12 animate-spin text-primary" />
+      <p className="text-sm text-muted-foreground">Loading map...</p>
+    </div>
+  </div>
+);
+
+// Main Component
 export function WorldMap() {
   const [activeFilter, setActiveFilter] = useState("all");
+  const [hoveredPort, setHoveredPort] = useState<number | null>(null);
+  const [isMapLoaded, setIsMapLoaded] = useState(false);
 
-  const filteredPorts = ports.filter(
-    (port) =>
-      activeFilter === "all" ||
-      port.type === activeFilter ||
-      port.services.some((s) => s.toLowerCase() === activeFilter)
+  const filteredPorts = useMemo(
+    () =>
+      PORTS_DATA.filter(
+        (port) =>
+          activeFilter === "all" ||
+          port.services.includes(activeFilter as ServiceType)
+      ),
+    [activeFilter]
   );
 
-  const getPortColor = (type: string) => {
-    switch (type) {
-      case "headquarters":
-        return "bg-accent";
-      case "chandlers":
-        return "bg-primary";
-      case "towage":
-        return "bg-secondary";
-      case "agencies":
-        return "bg-chart-2";
-      default:
-        return "bg-primary";
-    }
-  };
+  const uniqueCountries = new Set(PORTS_DATA.map((p) => p.country)).size;
 
   return (
-    <section className="py-20 px-6">
+    <section className="py-10 sm:py-16 lg:py-20 px-4 sm:px-6">
       <div className="container mx-auto max-w-7xl">
-        {/* Heading  -------------------------------------------------------- */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-primary mb-6  text-balance">
+        <div className="text-center mb-8 sm:mb-12 lg:mb-16">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-primary mb-4 sm:mb-6 text-balance">
             Global Network
           </h2>
-          <p className="text-xl text-foreground/80 max-w-3xl mx-auto leading-relaxed font-[var(--font-inter)]">
+          <p className="text-lg sm:text-xl text-foreground/80 max-w-3xl mx-auto leading-relaxed">
             Our extensive partner network spans major shipping hubs worldwide.
           </p>
         </div>
 
-        {/* Filter chips  --------------------------------------------------- */}
-        <div className="flex flex-wrap justify-center gap-4 mb-12">
-          {filterTypes.map(({ id, label, icon: Icon }) => (
-            <button
-              key={id}
-              onClick={() => setActiveFilter(id)}
-              className={`flex items-center gap-2 px-4 py-2 rounded-full transition-all
-                ${
-                  activeFilter === id
-                    ? "bg-primary text-primary-foreground"
-                    : "bg-muted text-muted-foreground hover:bg-primary/20"
-                }`}
-            >
-              <Icon className="h-4 w-4" />
-              {label}
-            </button>
+        {/* Filters */}
+        <div className="flex flex-wrap justify-center gap-2 sm:gap-3 lg:gap-4 mb-8 sm:mb-10 lg:mb-12">
+          {FILTER_TYPES.map((filter) => (
+            <FilterButton
+              key={filter.id}
+              filter={filter}
+              isActive={activeFilter === filter.id}
+              onClick={() => setActiveFilter(filter.id)}
+            />
           ))}
         </div>
 
-        {/* Card with dotted-globe background ------------------------------ */}
-        <div className="relative">
-          <Card className="bg-card border-border border-2 shadow-2xl overflow-hidden">
-            <CardContent className="p-0">
-              <div className="relative w-full h-96 md:h-[500px]">
-                {/* ──────────────────────────────
-               OPTION 1 — one-colour tint
-               just CSS, keep using next/image
-            ────────────────────────────── */}
-                <div className="absolute inset-0  mix-blend-multiply pointer-events-none" />
-                <Image
-                  src="/vecteezy_vector-map-of-the-world-with-square-dots_4997094.svg"
-                  alt="world map"
-                  fill
-                  className="object-cover opacity-70"
-                  priority
-                />
+        {/* Map */}
+        <Card className="bg-card border-border border-2 shadow-2xl overflow-hidden">
+          <CardContent className="p-0">
+            <div className="relative w-full aspect-[2/1] sm:aspect-[16/9] lg:aspect-[16/10] bg-background">
+              {/* Loading Spinner */}
+              {!isMapLoaded && <LoadingSpinner />}
 
-                {filteredPorts.map((port) => (
-                  <div
-                    key={port.id}
-                    style={{ left: `${port.x}%`, top: `${port.y}%` }}
-                    className="absolute -translate-x-1/2 -translate-y-1/2 cursor-pointer group"
-                  >
-                    <div
-                      className={`w-4 h-4 rounded-full ${getPortColor(
-                        port.type
-                      )}
-                              border-2 border-background shadow-lg
-                              group-hover:scale-125 transition-transform`}
-                    >
-                      <div className="absolute inset-0 rounded-full animate-ping bg-current opacity-20" />
-                    </div>
+              <MapPatterns />
 
-                    {/* label on hover */}
-                    <div
-                      className="absolute top-6 left-1/2 -translate-x-1/2 opacity-0
-                                group-hover:opacity-100 transition-opacity"
-                    >
-                      <div className="bg-background border border-border rounded-lg px-3 py-2 shadow-lg whitespace-nowrap">
-                        <div className="text-sm font-semibold text-foreground">
-                          {port.name}
-                        </div>
-                        <div className="text-xs text-muted-foreground">
-                          {port.country}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
-        </div>
+              <ComposableMap
+                projection="geoMercator"
+                projectionConfig={{ scale: 130, center: [11, 39] }}
+              >
+                <g>
+                  <Geographies geography={GEO_URL}>
+                    {({ geographies }) => {
+                      // Set loaded state when geographies are ready
+                      if (geographies.length > 0 && !isMapLoaded) {
+                        setTimeout(() => setIsMapLoaded(true), 100);
+                      }
 
-        {/* Stats  ---------------------------------------------------------- */}
-        <div className="grid grid-cols-2 md:grid-cols-2 gap-6 mt-16">
-          <div className="text-center">
-            <div className="text-4xl font-bold text-primary mb-2">20+</div>
-            <div className="text-md text-foreground/70">Global Partners</div>
-          </div>
-          <div className="text-center">
-            <div className="text-4xl font-bold text-primary mb-2">40+</div>
-            <div className="text-md text-foreground/70">Countries</div>
-          </div>
-        </div>
+                      return geographies.map((geo) => (
+                        <Geography
+                          key={geo.rsmKey}
+                          geography={geo}
+                          fill="url(#dots)"
+                          stroke="none"
+                          strokeWidth={0}
+                          style={{
+                            default: { outline: "none" },
+                            hover: {
+                              outline: "none",
+                              fill: "url(#dots)",
+                              cursor: "default",
+                            },
+                            pressed: { outline: "none" },
+                          }}
+                        />
+                      ));
+                    }}
+                  </Geographies>
+
+                  {/* Render all pins first */}
+                  {isMapLoaded &&
+                    filteredPorts.map((port) => (
+                      <Marker
+                        key={port.id}
+                        coordinates={port.coordinates}
+                        onMouseEnter={() => setHoveredPort(port.id)}
+                        onMouseLeave={() => setHoveredPort(null)}
+                      >
+                        <g>
+                          {/* Ping animation for headquarters */}
+                          {port.services.includes("Headquarters") && (
+                            <circle
+                              r={8}
+                              className="animate-ping"
+                              fill={getPortColor(port.services)}
+                              opacity={0.2}
+                              style={{ pointerEvents: "none" }}
+                            />
+                          )}
+
+                          {/* Pin dot with border */}
+                          <circle
+                            r={port.services.includes("Headquarters") ? 6 : 4}
+                            className="cursor-pointer"
+                            fill={getPortColor(port.services)}
+                            stroke="#fff"
+                            strokeWidth={1}
+                            style={{
+                              filter:
+                                "drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2))",
+                            }}
+                          />
+                        </g>
+                      </Marker>
+                    ))}
+
+                  {/* Render tooltips last so they're on top */}
+                  {isMapLoaded &&
+                    filteredPorts.map(
+                      (port) =>
+                        hoveredPort === port.id && (
+                          <Marker
+                            key={`tooltip-${port.id}`}
+                            coordinates={port.coordinates}
+                          >
+                            <g
+                              transform="translate(0, 15)"
+                              style={{ pointerEvents: "none" }}
+                            >
+                              <foreignObject
+                                x="-75"
+                                y="0"
+                                width="150"
+                                height="60"
+                              >
+                                <div
+                                  className="bg-background border border-border rounded-lg px-3 py-2 shadow-lg"
+                                  style={{ pointerEvents: "none" }}
+                                >
+                                  <div className="text-sm font-semibold text-foreground whitespace-nowrap">
+                                    {port.name}
+                                  </div>
+                                  <div className="text-xs text-muted-foreground">
+                                    {port.country}
+                                  </div>
+                                </div>
+                              </foreignObject>
+                            </g>
+                          </Marker>
+                        )
+                    )}
+                </g>
+              </ComposableMap>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Stats
+          portsCount={PORTS_DATA.length}
+          countriesCount={uniqueCountries}
+        />
       </div>
     </section>
   );

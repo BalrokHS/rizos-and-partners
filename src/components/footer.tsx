@@ -71,15 +71,21 @@ export function Footer() {
                 <Separator className="my-6" />
                 <li className="flex items-center gap-3">
                   <Phone className="h-4 w-4 text-primary flex-shrink-0" />
-                  <span className="text-foreground/70 text-sm">
+                  <a
+                    href="tel:+302103254117"
+                    className="text-foreground/70 text-sm hover:text-primary transition-colors"
+                  >
                     +30 210 325 4117
-                  </span>
+                  </a>
                 </li>
                 <li className="flex items-center gap-3">
                   <Mail className="h-4 w-4 text-primary flex-shrink-0" />
-                  <span className="text-foreground/70 text-sm">
+                  <a
+                    href="mailto:info@rizosandpartners.gr"
+                    className="text-foreground/70 text-sm hover:text-primary transition-colors"
+                  >
                     info@rizosandpartners.gr
-                  </span>
+                  </a>
                 </li>
               </ul>
             </div>
@@ -115,32 +121,6 @@ export function Footer() {
           </div>
         </div>
       </div>
-
-      {/* GDPR Cookie Banner */}
-      {/* <div className="fixed bottom-4 left-4 right-4 md:left-auto md:right-4 md:max-w-sm z-50">
-        <div className="bg-card border border-primary rounded-lg p-4 shadow-lg">
-          <p className="text-sm text-card-foreground mb-3">
-            We use cookies to enhance your browsing experience and analyze our
-            traffic. By continuing to use our site, you consent to our use of
-            cookies.
-          </p>
-          <div className="flex gap-2">
-            <Button
-              size="sm"
-              className="bg-primary text-primary-foreground hover:bg-primary/90"
-            >
-              Accept
-            </Button>
-            <Button
-              size="sm"
-              variant="outline"
-              className="border-primary text-primary bg-transparent"
-            >
-              Learn More
-            </Button>
-          </div>
-        </div>
-      </div> */}
     </footer>
   );
 }
