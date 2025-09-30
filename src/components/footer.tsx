@@ -3,6 +3,7 @@
 import { Mail, Phone, MapPin, Linkedin, ArrowUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import { Separator } from "./ui/separator";
 
 export function Footer() {
   const scrollToTop = () => {
@@ -11,7 +12,7 @@ export function Footer() {
 
   return (
     <footer className="bg-background border-t border-border">
-      <div className="container mx-auto max-w-7xl px-6 py-16">
+      <div className="container mx-auto max-w-screen px-6 py-16">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           {/* Company Info */}
           <div className="lg:col-span-2">
@@ -28,13 +29,12 @@ export function Footer() {
               </span>
             </div>
             <p className="text-foreground/70 mb-6 leading-relaxed max-w-md font-[family-name:var(--font-inter)]">
-              Your trusted gateway to the Greek shipping market. Connecting
-              global suppliers with the world's largest shipping fleet through
-              three decades of maritime expertise.
+              Affiliated with the leading ship suppliers, ship agencies &
+              harbour tug companies worldwide.
             </p>
             <div className="flex items-center space-x-4">
               <a
-                href="https://linkedin.com/company/rizos-partners"
+                href="https://www.linkedin.com/company/rizos-partners-pc/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-2 bg-muted rounded-full hover:bg-primary hover:text-primary-foreground transition-colors"
@@ -47,31 +47,42 @@ export function Footer() {
           <div />
 
           {/* Contact Info */}
-          <div>
-            <h3 className="text-lg font-semibold text-foreground mb-4 font-[family-name:var(--font-poppins)]">
+          <div className="mr-2">
+            <h3 className="text-lg font-semibold text-foreground mb-4 font-[family-name:var(--font-poppins)] ">
               Contact Info
             </h3>
-            <ul className="space-y-3">
-              <li className="flex items-start gap-3">
-                <MapPin className="h-4 w-4 text-primary mt-1 flex-shrink-0" />
-                <span className="text-foreground/70 text-sm">
-                  Christou Lada 2 <br />
-                  Syntagma, Athens, Greece 10561
-                </span>
-              </li>
-              <li className="flex items-center gap-3">
-                <Phone className="h-4 w-4 text-primary flex-shrink-0" />
-                <span className="text-foreground/70 text-sm">
-                  +30 210 123 4567
-                </span>
-              </li>
-              <li className="flex items-center gap-3">
-                <Mail className="h-4 w-4 text-primary flex-shrink-0" />
-                <span className="text-foreground/70 text-sm">
-                  info@rizospartners.com
-                </span>
-              </li>
-            </ul>
+            <Separator className="mb-4" />
+            <div className="">
+              <ul className="space-y-3">
+                <li className="flex items-start gap-3">
+                  <MapPin className="h-4 w-4 text-primary mt-1 flex-shrink-0" />
+                  <span className="text-foreground/70 text-sm">
+                    Christou Lada 2 <br />
+                    Syntagma, Athens, Greece 10561
+                  </span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <MapPin className="h-4 w-4 text-primary mt-1 flex-shrink-0" />
+                  <span className="text-foreground/70 text-sm">
+                    Xanthippou 37 <br />
+                    Cholargos, Athens, Greece 15561
+                  </span>
+                </li>
+                <Separator className="my-6" />
+                <li className="flex items-center gap-3">
+                  <Phone className="h-4 w-4 text-primary flex-shrink-0" />
+                  <span className="text-foreground/70 text-sm">
+                    +30 210 325 4117
+                  </span>
+                </li>
+                <li className="flex items-center gap-3">
+                  <Mail className="h-4 w-4 text-primary flex-shrink-0" />
+                  <span className="text-foreground/70 text-sm">
+                    info@rizosandpartners.gr
+                  </span>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
 

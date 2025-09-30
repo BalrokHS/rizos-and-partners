@@ -344,18 +344,14 @@ export function WorldMap() {
         </div>
 
         {/* Stats  ---------------------------------------------------------- */}
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-6 mt-16">
+        <div className="grid grid-cols-2 md:grid-cols-2 gap-6 mt-16">
           <div className="text-center">
-            <div className="text-3xl font-bold text-primary mb-2">50+</div>
-            <div className="text-sm text-foreground/70">Global Partners</div>
+            <div className="text-4xl font-bold text-primary mb-2">20+</div>
+            <div className="text-md text-foreground/70">Global Partners</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl font-bold text-primary mb-2">25</div>
-            <div className="text-sm text-foreground/70">Countries</div>
-          </div>
-          <div className="text-center">
-            <div className="text-3xl font-bold text-primary mb-2">4,700</div>
-            <div className="text-sm text-foreground/70">Vessels Served</div>
+            <div className="text-4xl font-bold text-primary mb-2">40+</div>
+            <div className="text-md text-foreground/70">Countries</div>
           </div>
         </div>
       </div>
