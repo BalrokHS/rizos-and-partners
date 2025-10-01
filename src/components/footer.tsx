@@ -1,6 +1,13 @@
 "use client";
 
-import { Mail, Phone, MapPin, Linkedin, ArrowUp } from "lucide-react";
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Linkedin,
+  ArrowUp,
+  Instagram,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { Separator } from "./ui/separator";
@@ -40,6 +47,14 @@ export function Footer() {
                 className="p-2 bg-muted rounded-full hover:bg-primary hover:text-primary-foreground transition-colors"
               >
                 <Linkedin className="h-5 w-5" />
+              </a>
+              <a
+                href="https://www.instagram.com/rizospartners/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 bg-muted rounded-full hover:bg-primary hover:text-primary-foreground transition-colors"
+              >
+                <Instagram className="h-5 w-5" />
               </a>
             </div>
           </div>

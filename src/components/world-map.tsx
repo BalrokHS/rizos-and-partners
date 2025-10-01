@@ -44,7 +44,7 @@ const FILTER_TYPES = [
 const PORTS_DATA: Port[] = [
   {
     id: 1,
-    name: "Piraeus",
+    name: "Athens",
     country: "Greece",
     coordinates: [23.6469, 37.9415],
     services: ["Headquarters", "Agencies", "Chandlers"],
@@ -202,6 +202,20 @@ const PORTS_DATA: Port[] = [
     country: "Indonesia",
     coordinates: [106.8456, -6.2088],
     services: ["Agencies"],
+  },
+  {
+    id: 27,
+    name: "Mumbai",
+    country: "India",
+    coordinates: [79.8612, 6.9271],
+    services: ["Agencies", "Chandlers"],
+  },
+  {
+    id: 28,
+    name: "Santos",
+    country: "Brazil",
+    coordinates: [-46.3285, -23.9984],
+    services: ["Agencies", "Chandlers"],
   },
 ];
 
