@@ -20,44 +20,56 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: {
     default:
-      "Rizos & Partners | Global Maritime Gateway to the Greek Shipping Market",
+      "Rizos & Partners | Global Maritime Supply Chain Solutions & Ship Services",
     template: "%s | Rizos & Partners",
   },
   description:
-    "Rizos & Partners connects global maritime service providers with Greece’s leading shipowners, ship managers, and charterers. Access the Greek shipping market: compliance, technical, commercial and strategic maritime solutions.",
+    "Global maritime supply chain specialists connecting ship suppliers worldwide with Greek shipowners. Ship supplies, technical spares, safety equipment, underwater repairs & port agency services across 28+ locations.",
   keywords: [
-    "Rizos & Partners",
-    "Greek shipping market",
+    "maritime supply chain",
+    "ship supplies",
+    "technical spares",
+    "Greek shipping",
     "shipowners",
-    "ship managers",
-    "charterers",
-    "maritime services",
-    "shipping consulting",
-    "marine brokerage",
-    "vessel management",
-    "maritime compliance",
+    "ship chandlers",
+    "port agency services",
+    "underwater repairs",
+    "marine safety equipment",
+    "vessel provisioning",
+    "maritime logistics",
+    "shipping services",
+    "global maritime network",
+    "ship management services",
+    "maritime procurement",
+    "deck engine stores",
+    "LSA life saving appliances",
+    "towage services",
+    "Piraeus Greece",
+    "ship chandlery",
+    "vessel supplies",
+    "maritime intermediary",
   ],
   authors: [{ name: "Rizos & Partners" }],
   creator: "Rizos & Partners",
   publisher: "Rizos & Partners",
-  metadataBase: new URL("https://www.rizosandpartners.com"),
+  metadataBase: new URL("https://www.rizosandpartners.gr"),
   alternates: {
     canonical: "/",
   },
   openGraph: {
-    title: "Rizos & Partners | Global Maritime Gateway",
+    title: "Rizos & Partners | Global Maritime Supply Chain Solutions",
     description:
-      "Bridge to the Greek shipping market: connect with top shipowners, managers & charterers. Strategic maritime advisory and services.",
-    url: "https://www.rizosandpartners.com/",
+      "Global maritime supply chain specialists. Ship supplies, technical spares, safety equipment & port agency services. Connecting suppliers with Greek shipowners worldwide.",
+    url: "https://www.rizosandpartners.gr/",
     siteName: "Rizos & Partners",
     type: "website",
     locale: "en_US",
     images: [
       {
-        url: "/og-image.jpg",
+        url: "/logo.png",
         width: 1200,
         height: 630,
-        alt: "Rizos & Partners - Global Maritime Gateway",
+        alt: "Rizos & Partners - Global Maritime Supply Chain Solutions",
       },
     ],
   },
@@ -73,7 +85,7 @@ export const metadata: Metadata = {
       "max-video-preview": -1,
     },
   },
-  category: "Maritime Shipping",
+  category: "Maritime Supply Chain",
 };
 
 export default function RootLayout({
@@ -83,6 +95,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" href="/icon.png" type="image/png" />
+        <link rel="apple-touch-icon" href="/apple-icon.png" />
+      </head>
       <body
         className={`font-sans ${poppins.variable} ${inter.variable} antialiased`}
       >
