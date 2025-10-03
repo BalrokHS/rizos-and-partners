@@ -71,27 +71,24 @@ export function HeroSection() {
             Connecting global ship suppliers with the world's largest shipping
             fleet through local expertise and performance-based partnerships.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button
-              size="lg"
-              className="bg-primary text-primary-foreground hover:bg-primary/90 text-lg px-8 py-4"
-            >
-              Explore Services
-              <ChevronRight className="ml-2 h-5 w-5" />
-            </Button>
-          </div>
         </div>
       </div>
 
-      <div
-        className={`absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 transition-all duration-500 ${
-          showLanding ? "opacity-100" : "opacity-0"
+      <button
+        className={`absolute bottom-8 left-1/2 transform -translate-x-1/2 z-40 transition-all duration-500 cursor-pointer ${
+          showLanding
+            ? "opacity-100 pointer-events-auto"
+            : "opacity-0 pointer-events-none"
         }`}
+        onClick={() => {
+          window.scrollBy({ top: window.innerHeight, behavior: "smooth" });
+        }}
+        aria-label="Scroll Down"
       >
         <div className="animate-bounce">
           <ChevronRight className="h-6 w-6 text-primary rotate-90" />
         </div>
-      </div>
+      </button>
     </section>
   );
 }

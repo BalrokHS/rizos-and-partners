@@ -352,7 +352,7 @@ export function WorldMap() {
         {/* Map */}
         <Card className="bg-card border-border border-2 shadow-2xl overflow-hidden">
           <CardContent className="p-0">
-            <div className="relative w-full aspect-[2/1] sm:aspect-[16/9] lg:aspect-[16/10] bg-background">
+            <div className="relative w-full aspect-[2/1] sm:aspect-[16/9] lg:h-[70vh] bg-background">
               {/* Loading Spinner */}
               {!isMapLoaded && <LoadingSpinner />}
 
