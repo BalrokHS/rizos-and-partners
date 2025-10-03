@@ -19,8 +19,7 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default:
-      "Rizos & Partners | Global Maritime Supply Chain Solutions & Ship Services",
+    default: "Rizos & Partners",
     template: "%s | Rizos & Partners",
   },
   description:
@@ -57,7 +56,7 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   openGraph: {
-    title: "Rizos & Partners | Global Maritime Supply Chain Solutions",
+    title: "Rizos & Partners ",
     description:
       "Global maritime supply chain specialists. Ship supplies, technical spares, safety equipment & port agency services. Connecting suppliers with Greek shipowners worldwide.",
     url: "https://www.rizosandpartners.gr/",
@@ -69,7 +68,7 @@ export const metadata: Metadata = {
         url: "/logo.png",
         width: 1200,
         height: 630,
-        alt: "Rizos & Partners - Global Maritime Supply Chain Solutions",
+        alt: "Rizos & Partners",
       },
     ],
   },
