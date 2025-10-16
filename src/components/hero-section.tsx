@@ -37,7 +37,7 @@ export function HeroSection() {
             : "opacity-0 -translate-y-20 pointer-events-none"
         }`}
       >
-        <div className="text-center animate-fade-in-up mt-10">
+        <div className="text-center animate-fade-in-up mb-10">
           <div className="">
             <Image
               src="/logo.png"
@@ -47,7 +47,7 @@ export function HeroSection() {
               className="mx-auto rounded-full"
             />
           </div>
-          <h1 className="text-4xl md:text-6xl font-bold text-primary  font-[family-name:var(--font-poppins)] pt-20">
+          <h1 className="text-4xl md:text-6xl font-bold text-primary  font-[family-name:var(--font-poppins)] pt-10">
             Rizos & Partners
           </h1>
           <p className="text-lg md:text-xl pt-5 text-foreground/80 font-[family-name:var(--font-inter)] italic">
@@ -57,7 +57,7 @@ export function HeroSection() {
       </div>
 
       <div
-        className={`relative z-20 text-center px-6 max-w-4xl mx-auto transition-all duration-700 ${
+        className={`relative z-20 text-center px-6 max-w-4xl mx-auto transition-all duration-700 pt-10 ${
           showLanding
             ? "opacity-0 translate-y-20 pointer-events-none"
             : "opacity-100 translate-y-0 pt-24"
